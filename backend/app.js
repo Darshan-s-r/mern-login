@@ -13,7 +13,7 @@ mongoose.connect(url, {
   useUnifiedTopology: true,
 })
 .then(()=>console.log('mongo connected'))
-.catch(err=>console.log(err))
+.catch(err=>console.log(err)) 
 
 //import routes
 const authRouts = require('./Routes/auth')

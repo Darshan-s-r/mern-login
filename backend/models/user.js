@@ -22,10 +22,14 @@ const userSchema = new mongoose.Schema({
   },
   salt:String,
   role:{
-    type:String
+    // type:String
+    type: mongoose.Schema.Types.Mixed,
+    default: 'subscriber'
   },
   resetPasswordLink:{
-    data:String
+    // data:String
+    type: mongoose.Schema.Types.Mixed,
+    default: ''
   }
   
 }, {timestamps:true})
@@ -49,7 +53,7 @@ userSchema.methods = {
   },
   encryptPassword: function(password){
     if(!password)
-      return ''
+      return '' 
     try {
       return crypto.createHmac('sha1', this.salt)  //hear sha1 is algorithem name
       .update(password)
