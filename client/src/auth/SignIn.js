@@ -9,8 +9,8 @@ import 'react-toastify/dist/ReactToastify.min.css'
 export default function SignIn() {
     const navigate = useNavigate();
     const [values, setValues] = useState({
-        email: "darshanrangegowda19@gmail.com",
-        password: "Darshan@111",
+        email: "",
+        password: "",
         buttonText: "submit"
     });
     const { email, password, buttonText } = values;
@@ -58,7 +58,12 @@ export default function SignIn() {
                     <label id ='forpassword' htmlFor="exampleInputPassword1">Password</label>
                     <input onChange={handleChange("password")} value={password} type="password" className="form-control" placeholder="Password" />
                 </div>
-                <button id ='forbutton' onClick={handleSubmit} type="submit" className="btn btn-primary">{buttonText}</button>
+                <button id ='forbutton' onClick={handleSubmit} type="submit" className="btn btn-primary my-2">{buttonText}</button>
+                <div className="form-group">
+                <Link to='/password/forgot' className=" nav-link">
+                    Forgot password
+                </Link>
+                </div>
             </form>
         )
     };
@@ -68,7 +73,7 @@ export default function SignIn() {
                 <div className='col-md-6 offset-md-3'>
                     <ToastContainer />
                         {isAuth() ? navigate('/') : null}
-                    <h1 className='p-5 text-center'>Sign Up</h1>
+                    <h1 className='p-5 text-center'>Sign In</h1>
                     {signinForm()}
                 </div>
             </Layout>

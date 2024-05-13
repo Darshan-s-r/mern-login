@@ -1,9 +1,11 @@
 const express = require("express")
-const morgan = require('morgan')
-const cors = require('cors')
+const morgan = require('morgan')  // HTTP request logger middleware for Express
+const cors = require('cors')  //Cross-Origin Resource Sharing
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 require('dotenv').config()
+//import routes
+const authRouts = require('./Routes/auth')
 
 const app = express();
 //connect to database
@@ -14,9 +16,6 @@ mongoose.connect(url, {
 })
 .then(()=>console.log('mongo connected'))
 .catch(err=>console.log(err)) 
-
-//import routes
-const authRouts = require('./Routes/auth')
 
 //app middleware
 app.use(morgan('dev'));

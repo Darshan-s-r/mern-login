@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate} from "react-router-dom";
 import { isAuth, signOut } from '../auth/helpers'
 
 function Layout (props){
-    const location = useLocation();
+    const location = useLocation(); 
     const navigate = useNavigate();
     const isActive = path =>{
         return location.pathname === path ? { color: '#000' } : { color: '#fff' };
@@ -11,11 +11,14 @@ function Layout (props){
 
     function nav(){
        return (<ul className="nav nav-tabs bg-primary">
-            <li className="nav-item">
-                <Link to='/' className=" nav-link" style={isActive('/')}>
-                    Home
-                </Link>
-            </li>
+        {isAuth() && (
+             <li className="nav-item">
+             <Link to='/' className=" nav-link" style={isActive('/')}>
+                 Home
+             </Link>
+         </li>
+        )}
+           
            {!isAuth() && (
             <Fragment>
             <li>
@@ -36,7 +39,7 @@ function Layout (props){
             <li className="nav-item">
                 <span className="nav-link" style={{cursor: 'pointer', color: 'white'}} onClick={()=>{
                     signOut(()=>{
-                        navigate('/');
+                        navigate('/signin');
                     });
                 }}>signOut</span>
             </li>

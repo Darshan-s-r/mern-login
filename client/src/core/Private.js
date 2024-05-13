@@ -1,10 +1,9 @@
 import React from 'react'
 import Layout from './Layout'
+import App from '../App'
 
 export default function Private() {
   return (
-    <Layout>
-      <h1>Private page</h1>
-    </Layout>
+      <App />
   )
 }

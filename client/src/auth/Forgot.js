@@ -5,7 +5,6 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 
 export default function Forgot() {
-    const navigate = useNavigate();
     const [values, setValues] = useState({
         email: "",
         buttonText: "submit"
@@ -21,23 +20,20 @@ export default function Forgot() {
         event.preventDefault();
         setValues({ ...values, buttonText: "Submitting" })
         axios({
-            method: 'POST',
-            url: `${process.env.REACT_APP_API}/signin`,
-            data: { email, password }
+            method: 'PUT',
+            url: `${process.env.REACT_APP_API}/forgot-password`,
+            data: { email }
 
         })
             .then((response) => {
-                // console.log('SIGNUP SUCCESS', response)
-                //save the responce (user, token) in localstorage/cookie
-                authenticate(response, ()=>{
-                    setValues({ ...values, email: '', password: '', buttonText: 'submitted' })
-                toast.success(`Hey ${response.data.user.name}, Welcome back`)
+                console.log('SIGNUP SUCCESS', response)
+                setValues({ ...values, email: '', buttonText: 'submitted' })
+                toast.success('email send')
                 })
                 
-                
-            })
+        
             .catch((error) => {
-                console.log('SIGNIN ERROR', error.response.data.error)
+                console.log('SIGNIN ERROR', error)
                 setValues({ ...values, buttonText: 'Submit' })
                 toast.error(error.response.data.error);
             })

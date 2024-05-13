@@ -16,7 +16,7 @@ const _ = require('lodash')
 
 //     let newUser = new User({
 //       name,
-//       email,
+//       email, 
 //       password
 //     });
 
@@ -70,7 +70,7 @@ exports.signup = (req, res) => {
     const tranEmailApi = new Sib.TransactionalEmailsApi();
 
     const sender = {
-      email: 'bharath.g.s115@gmail.com',
+      email: 'darshanrangegowda19@gmail.com',
     };
 
     const receivers = [
@@ -209,7 +209,7 @@ exports.forgotPassword = (req, res)=>{
           const tranEmailApi = new Sib.TransactionalEmailsApi();
       
           const sender = {
-            email: 'bharath.gs115@gmail.com',
+            email: 'darshanrangegowda19@gmail.com',
           };
       
           const receivers = [
@@ -250,7 +250,7 @@ exports.forgotPassword = (req, res)=>{
   .catch((err)=>{
     return res.status(400).json({
       error: "User with that email does not exist"
-    });
+    }); 
   });
 }
 
@@ -260,7 +260,7 @@ exports.resetPassword = (req, res) => {
 
   if (resetPasswordLink) {
     jwt.verify(resetPasswordLink, process.env.JWT_RESET_PASSWORD, function (err, decode) {
-      if (err || !decode) { // Change 'user' to 'decode' to fix the error handling
+      if (err || !decode) { 
         return res.status(400).json({
           error: 'Link expired, please try again'
         });
@@ -279,7 +279,7 @@ exports.resetPassword = (req, res) => {
             };
 
             // Use _.extend to update the user object with new fields
-            user = _.extend(user, updateFields);
+            user = _.extend(user, updateFields);  //merge the `updateFields` object with the existing `user` object
 
             user.save()
               .then(() => {

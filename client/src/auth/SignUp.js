@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 import Layout from '../core/Layout'
 import axios from 'axios'
 import { isAuth } from './helpers'
@@ -9,15 +9,15 @@ import 'react-toastify/dist/ReactToastify.min.css'
 export default function SignUp() {
     const navigate = useNavigate();
     const [values, setValues] = useState({
-        name: "darshan",
-        email: "darshanrangegowda19@gmail.com",
-        password: "Bharath23",
+        name: "",
+        email: "",
+        password: "",
         buttonText: "submit"
     });
     const { name, email, password, buttonText } = values;
 
     const handleChange = (name) => (event) => {
-        // console.log(event.target.value);
+        // console.log(event.target.value); 
         setValues({ ...values, [name]: event.target.value })
     }
 
@@ -31,7 +31,7 @@ export default function SignUp() {
 
         })
             .then((response) => {
-                // console.log('SIGNUP SUCCESS', response)
+                console.log('SIGNUP SUCCESS', response)
                 setValues({ ...values, name: '', email: '', password: '', buttonText: 'submitted' })
                 toast.success(response.data.message)
             })
@@ -58,7 +58,7 @@ export default function SignUp() {
                     <label id ='forpassword' htmlFor="exampleInputPassword1">Password</label>
                     <input onChange={handleChange("password")} value={password} type="password" className="form-control" placeholder="Password" />
                 </div>
-                <button id ='forbutton' onClick={handleSubmit} type="submit" className="btn btn-primary">{buttonText}</button>
+                <button id ='forbutton' onClick={handleSubmit} type="submit" className="btn btn-primary mt-2">{buttonText}</button>
             </form>
         )
     };
